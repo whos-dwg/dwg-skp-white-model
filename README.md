@@ -43,6 +43,8 @@ Reviewable DWG/DXF to source-layered SketchUp models, with CAD-driven updates to
 
 初次建模使用 [dwg-layered-skp](skills/dwg-layered-skp/SKILL.md)。既有來源白模的局部或整模同步使用 [dwg-skp-sync](skills/dwg-skp-sync/SKILL.md)，兩者共用同一份 Python 核心。
 
+需要成對技能包時，可前往[下載與安裝說明](downloads/README.md)，並以附帶的 SHA-256 校驗檔核對下載結果。
+
 <a id="requirements"></a>
 ## 環境需求
 
@@ -250,6 +252,7 @@ $env:PYTHONPATH = (Resolve-Path src).Path
 | `tests/` | 合成回歸、資料契約、CLI 與原生環境檢查 |
 | `tools/` | 技能打包、安裝及升級驗證工具 |
 | `examples/` | 可公開重跑的合成來源 |
+| `downloads/` | 成對技能包、校驗檔與安裝入口 |
 | `docs/` | 架構、發布內容及文件圖片 |
 | `jobs/`、`outputs/`、`work/` | 本機工作與驗證暫存，不隨公開版本發布 |
 
