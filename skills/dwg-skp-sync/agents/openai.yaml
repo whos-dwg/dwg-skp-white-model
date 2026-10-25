@@ -1,0 +1,6 @@
+interface:
+  display_name: "dwg-skp-sync"
+  short_description: "有 CAD 選取時局部同步，無選取時整模比對並只更新差異"
+  default_prompt: "使用 $dwg-skp-sync 同步目前來源綁定的 SketchUp 白模：有 CAD 選取時局部同步，無選取時整模比對牆柱、帷幕與來源綁定樓板，只更新差異，保留孔洞、降板及單次 Undo。"
+policy:
+  allow_implicit_invocation: true

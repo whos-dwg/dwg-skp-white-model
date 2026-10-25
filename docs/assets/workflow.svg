@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="480" viewBox="0 0 1280 480" role="img" aria-labelledby="title desc">
+  <title id="title">DWG to SKP White Model workflow</title>
+  <desc id="desc">Read source plans, review evidence, record user approval, and write and reopen a source-layered SKP. Existing white models support local or whole-model delta sync.</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#dce4e6" stroke-width="0.6"/></pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#526a76" stroke-width="1.4"/></marker>
+  </defs>
+  <rect width="1280" height="480" rx="16" fill="#f5f7f7"/>
+  <rect width="1280" height="480" rx="16" fill="url(#grid)"/>
+  <g font-family="Segoe UI,Microsoft JhengHei,sans-serif">
+    <text x="48" y="53" font-size="13" letter-spacing="3" font-weight="700" fill="#647b86">DWG → SKP / TRACEABLE WHITE MODELS</text>
+    <text x="48" y="103" font-size="32" font-weight="700" fill="#243947">來源有據，方案可核，模型可追溯。</text>
+    <g fill="#ffffff" stroke="#d1dce0"><rect x="48" y="145" width="260" height="170" rx="8"/><rect x="356" y="145" width="260" height="170" rx="8"/><rect x="664" y="145" width="260" height="170" rx="8"/><rect x="972" y="145" width="260" height="170" rx="8"/></g>
+    <g fill="#c47a20" font-size="13" font-weight="700" letter-spacing="2"><text x="72" y="178">01 / SOURCE</text><text x="380" y="178">02 / REVIEW</text><text x="688" y="178">03 / APPROVAL</text><text x="996" y="178">04 / NATIVE SKP</text></g>
+    <g fill="#243947" font-size="23" font-weight="700"><text x="72" y="218">唯讀解析</text><text x="380" y="218">證據式判讀</text><text x="688" y="218">使用者核定</text><text x="996" y="218">寫出與讀回</text></g>
+    <g fill="#526a76" font-size="15"><text x="72" y="251">DWG / DXF / JSON</text><text x="72" y="278">圖層、實例、單位與參照</text><text x="380" y="251">牆柱、帷幕、開口、樓板</text><text x="380" y="278">候選平面與待確認項目</text><text x="688" y="251">來源、決策與預覽雜湊</text><text x="688" y="278">記錄指定版本的真實同意</text><text x="996" y="251">原圖層 Tag、獨立群組</text><text x="996" y="278">驗證實檔幾何與來源</text></g>
+    <g stroke="#526a76" stroke-width="1.6" marker-end="url(#arrow)"><path d="M318 230H341"/><path d="M626 230H649"/><path d="M934 230H957"/></g>
+    <rect x="48" y="349" width="1184" height="88" rx="8" fill="#243947"/>
+    <rect x="48" y="349" width="5" height="88" rx="2" fill="#d39335"/>
+    <text x="76" y="384" fill="#ffffff" font-size="19" font-weight="600">既有來源白模 / CAD 差異同步</text>
+    <text x="76" y="412" fill="#c0d0d7" font-size="15">有選取：局部同步　·　實際空選取：完整比對，只更新差異</text>
+    <path d="M822 370V417" stroke="#526a76"/>
+    <text x="852" y="384" fill="#ffffff" font-size="17" font-weight="600">重讀與漂移檢查 → 一次 Undo</text>
+    <text x="852" y="412" fill="#c0d0d7" font-size="15">回讀驗證，完成後由使用者儲存</text>
+  </g>
+</svg>

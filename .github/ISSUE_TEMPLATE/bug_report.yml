@@ -1,0 +1,57 @@
+name: 問題回報
+description: 回報解析、判讀、建模、同步或文件的可重現問題
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        請使用合成或已取得公開許可的資料。移除客戶圖面、完整本機路徑與機密資訊；安全問題請依 SECURITY.md 使用私人管道。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 問題與影響
+      description: 什麼操作觸發了問題？哪些構件或結果受到影響？
+    validations:
+      required: true
+  - type: dropdown
+    id: workflow
+    attributes:
+      label: 發生階段
+      options:
+        - 來源解析／inspect
+        - 平面辨識／review
+        - 核定／build／原生 QA
+        - 局部同步
+        - 整模／樓板同步
+        - 技能安裝／打包
+        - 文件／範例
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 最小重現步驟
+      description: 貼上實際命令、必要的合成輸入與操作順序。
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 預期與實際結果
+      description: 需要時附去識別化的 blocker、收據或截圖，並說明模型是否已修改／儲存。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 執行環境
+      description: 填寫版本或 commit、Windows、Python、AutoCAD、.NET、SketchUp；未使用的項目可略。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 診斷資料
+      description: 去識別化的 doctor／status、錯誤或 QA 片段。不要附上未經授權的原始圖面。
+      render: text

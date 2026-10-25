@@ -1,0 +1,30 @@
+name: 功能提案
+description: 提出有具體使用情境與驗收方式的改進
+title: "[Feature] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 想完成的工作
+      description: 說明使用情境、目前的阻礙，以及現有操作方式。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 希望的行為
+      description: 以具體輸入、操作與輸出描述。若涉及構件、來源或作用樓板，請說明範圍。
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 如何確認完成
+      description: 提供可公開的合成案例或驗收步驟，並列出必須保留的既有行為。
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 替代方案與補充資料
+      description: 可附已取得公開許可的示意圖；避免上傳客戶或機密資料。

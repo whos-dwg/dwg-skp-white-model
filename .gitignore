@@ -1,0 +1,22 @@
+# Local dependencies and generated artifacts
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+bin/
+obj/
+work/
+jobs/
+outputs/
+skills/dwg-layered-skp/scripts/.deps/
+# Keep per-project sources, overrides and native files outside this repository.
+config/profiles/
+*.dwg
+*.dxf
+*.skp
+*.dll
+*.exe
+acad.err

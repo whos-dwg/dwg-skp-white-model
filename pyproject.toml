@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dwg-semantic-rules"
+version = "0.2.0"
+description = "Reviewable DWG intake, semantic classification, and source-layer SketchUp modeling"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "whos-dwg"}]
+requires-python = ">=3.11"
+dependencies = ["shapely>=2.0,<3"]
+
+[project.urls]
+Homepage = "https://github.com/whos-dwg/dwg-skp-white-model"
+Repository = "https://github.com/whos-dwg/dwg-skp-white-model"
+Issues = "https://github.com/whos-dwg/dwg-skp-white-model/issues"
+
+[project.optional-dependencies]
+review = ["matplotlib>=3.8"]
+
+[project.scripts]
+dwg-semantic-classify = "dwg_semantic.cli:main"
+dwg-layered-skp = "dwg_semantic.pipeline:main"
+dwg-skp-sync = "dwg_semantic.sync:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dwg_semantic = ["adapters/*.cs", "adapters/**/*", "config/*.json", "config/profiles/*.json"]
+

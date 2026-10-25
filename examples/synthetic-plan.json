@@ -1,0 +1,45 @@
+{
+  "units": "mm",
+  "entities": [
+    {
+      "type": "LWPOLYLINE",
+      "handle": "DEMO-W1",
+      "layer": "A-WALL",
+      "owner_block": "*Model_Space",
+      "closed": true,
+      "vertices": [[0, 0], [6000, 0], [6000, 200], [0, 200]]
+    },
+    {
+      "type": "LWPOLYLINE",
+      "handle": "DEMO-W2",
+      "layer": "A-WALL",
+      "owner_block": "*Model_Space",
+      "closed": true,
+      "vertices": [[5800, 200], [6000, 200], [6000, 3800], [5800, 3800]]
+    },
+    {
+      "type": "LWPOLYLINE",
+      "handle": "DEMO-W3",
+      "layer": "A-WALL",
+      "owner_block": "*Model_Space",
+      "closed": true,
+      "vertices": [[0, 3800], [6000, 3800], [6000, 4000], [0, 4000]]
+    },
+    {
+      "type": "LWPOLYLINE",
+      "handle": "DEMO-W4",
+      "layer": "A-WALL",
+      "owner_block": "*Model_Space",
+      "closed": true,
+      "vertices": [[0, 200], [200, 200], [200, 3800], [0, 3800]]
+    },
+    {
+      "type": "LWPOLYLINE",
+      "handle": "DEMO-C1",
+      "layer": "S-COLUMN",
+      "owner_block": "*Model_Space",
+      "closed": true,
+      "vertices": [[2800, 1800], [3200, 1800], [3200, 2200], [2800, 2200]]
+    }
+  ]
+}

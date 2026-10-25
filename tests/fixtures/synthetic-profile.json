@@ -1,0 +1,12 @@
+{
+  "profile_id": "synthetic-profile-test",
+  "profile_description": "Synthetic regression profile; contains no project-specific source IDs or model decisions.",
+  "layer_semantics": {
+    "structural_add": ["CUSTOM-SOLID"],
+    "fire_protection_ignored": ["TEST-FIRE-DOOR"]
+  },
+  "scope": {
+    "exclusion_reason": "profile_scope_exclusion",
+    "exclusion_basis": "Synthetic test scope"
+  }
+}
