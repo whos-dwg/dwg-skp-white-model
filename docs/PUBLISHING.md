@@ -1,6 +1,6 @@
 # GitHub 發布內容與操作清單
 
-本文件供維護者設定倉庫、建立 Release 及整理公開附件。首個公開版本採 `v0.2.0` Pre-release，目的地為 [whos-dwg/dwg-skp-white-model](https://github.com/whos-dwg/dwg-skp-white-model)，授權為 [MIT](../LICENSE)。
+本文件供維護者設定倉庫、建立 Release 及整理公開附件。後續修正版為 `v0.2.1` Pre-release，保留既有 `v0.2.0` 標籤。首個公開版本採 `v0.2.0` Pre-release，目的地為 [whos-dwg/dwg-skp-white-model](https://github.com/whos-dwg/dwg-skp-white-model)，授權為 [MIT](../LICENSE)。
 
 發布使用乾淨快照，包含程式、兩個技能、測試、文件與合成範例；既有本機 Git 歷史、客戶圖面、實際模型、歷史案例及工作暫存均不納入。
 
@@ -45,7 +45,7 @@ autocad sketchup dwg dxf cad architecture 3d-modeling python ruby geometry white
 | [Bug 範本](../.github/ISSUE_TEMPLATE/bug_report.yml) | Issues 表單：重現步驟、環境與實際錯誤 |
 | [功能提案範本](../.github/ISSUE_TEMPLATE/feature_request.yml) | Issues 表單：使用情境與驗收結果 |
 | [PR 範本](../.github/pull_request_template.md) | 問題、變更與驗證欄位 |
-| [v0.2.0 Release 文案](releases/v0.2.0.md) | GitHub Release description，可直接貼上 |
+| [v0.2.1 Release 文案](releases/v0.2.1.md) | GitHub Release description，可直接貼上 |
 
 圖片採相對路徑，從同一倉庫讀取。流程圖為文件圖解，平面範例由合成 JSON 實際產生；不使用客戶案例截圖。
 
@@ -53,9 +53,9 @@ autocad sketchup dwg dxf cad architecture 3d-modeling python ruby geometry white
 
 | 欄位 | 建議設定 |
 |---|---|
-| Tag | `v0.2.0`；先確認遠端尚無同名 tag，且套件版本與待發布 commit 一致 |
-| Release title | `v0.2.0 — DWG 判讀、分層白模與 CAD 差異同步` |
-| Description | 使用 [releases/v0.2.0.md](releases/v0.2.0.md) 內文 |
+| Tag | `v0.2.1`；先確認遠端尚無同名 tag，且套件版本與待發布 commit 一致 |
+| Release title | `v0.2.1 — 修正成對技能下載後的雜湊失配` |
+| Description | 使用 [releases/v0.2.1.md](releases/v0.2.1.md) 內文 |
 | Target | 實際通過發布驗證的 commit／分支，不預設分支名稱 |
 | Pre-release | 本次勾選，供使用者先行驗證 |
 | Latest | 待確定維護策略及實際 Release 狀態後設定 |
@@ -97,6 +97,7 @@ git diff --check
 - [ ] 執行合成 JSON 範例，確認有候選輸出，且因缺決策而維持 `blocked`。
 - [ ] 核心或橋接器有改動時，依貢獻指南完成相關及完整測試，再更新技能 runtime 與相依雜湊。
 - [ ] 執行打包／啟動器測試，確認同步技能使用同一份核心。
+- [ ] 執行 `tests/test_package_git_archive.py`，確認 LF／CRLF 來源經 Git 封存後仍能成對安裝；再對實際候選 source ZIP 與技能 ZIP 解壓安裝並執行兩個入口的 `--help`／`doctor`，保留 ZIP SHA256 與日誌。
 - [ ] 記錄實際原生建模、重新讀入及同步結果，標示未驗證或跳過的環境。
 - [ ] 檢查 README 相對連結、圖片及 GitHub Mermaid 顯示。
 

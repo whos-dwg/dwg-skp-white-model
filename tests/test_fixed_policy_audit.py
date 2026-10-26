@@ -23,9 +23,6 @@ from test_fixed_modeling_standard import fixture
 from test_modeling import rectangle
 from test_slab_modeling import footprint, system, decisions as slab_decisions
 
-ROOT=next(path for path in Path(__file__).resolve().parents if(path/'pyproject.toml').is_file())
-
-
 class FixedPolicyAudit(unittest.TestCase):
     def body_payload(self, category='curtain_accessory', *, semantic_only=False):
         doc,decisions=fixture()
@@ -86,7 +83,7 @@ class FixedPolicyAudit(unittest.TestCase):
         doc,decisions,payload=self.body_payload()
         result=enforce_standard_payload(doc,payload,decisions,{})
         self.assertEqual([],result['blockers'],result['blockers'])
-        with tempfile.TemporaryDirectory(dir=ROOT/'work'/'slab-tests')as folder:
+        with tempfile.TemporaryDirectory(prefix='fixed-policy-native-')as folder:
             qa=write_model(result,Path(folder)/'fire-reference.skp')
             self.assertTrue(qa['all_pass'],[row for row in qa['checks']if not row['pass']])
 

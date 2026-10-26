@@ -1,14 +1,14 @@
 # 成對技能下載
 
-- [下載 dwg-skp-skills-v0.2.0.zip](https://github.com/whos-dwg/dwg-skp-white-model/raw/refs/tags/v0.2.0/downloads/dwg-skp-skills-v0.2.0.zip)
+- [下載 dwg-skp-skills-v0.2.1.zip](https://github.com/whos-dwg/dwg-skp-white-model/raw/refs/tags/v0.2.1/downloads/dwg-skp-skills-v0.2.1.zip)
 - [SHA256SUMS.txt](SHA256SUMS.txt)
 
-技能包包含 `dwg-layered-skp`、`dwg-skp-sync`、共用 runtime、Ruby 橋接器、安裝工具與 MIT 授權。解壓後先讀 `INSTALL.md`，保持兩個技能同層並先安裝核心，再安裝同步入口。
+v0.2.1 修正 GitHub 下載後，同步技能因核心清單雜湊不同而無法安裝／啟動的問題。請使用同版本的兩個技能，解壓後讀取 INSTALL.md，先安裝 dwg-layered-skp，再安裝 dwg-skp-sync。
 
-Python、Shapely、AutoCAD、.NET 與 SketchUp 原生依賴仍須另外安裝；完整需求見 [README](../README.md#requirements)。這是 `v0.2.0` 預覽版的倉庫下載檔，沒有透過 Release 附件提供。
-
-PowerShell 可計算下載檔的 SHA-256，與校驗檔比對：
+包內含兩個技能、共用 runtime、Ruby 橋接器、安裝工具及 MIT 授權。Python、Shapely 與原生依賴須依[README](../README.md#requirements)另行安裝；Release 提供本目錄下載連結。
 
 ```powershell
-Get-FileHash ./dwg-skp-skills-v0.2.0.zip -Algorithm SHA256
+Get-FileHash ./dwg-skp-skills-v0.2.1.zip -Algorithm SHA256
 ```
+
+歷史 v0.2.0 的封存與標籤保留；該版有已知的清單換行失配問題，請使用 v0.2.1 成對更新。

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dwg-semantic-rules"
-version = "0.2.0"
+version = "0.2.1"
 description = "Reviewable DWG intake, semantic classification, and source-layer SketchUp modeling"
 readme = "README.md"
 license = {file = "LICENSE"}

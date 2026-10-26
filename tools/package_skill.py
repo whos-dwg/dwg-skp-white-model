@@ -5,7 +5,6 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 CORE_SKILL = "dwg-layered-skp"
@@ -13,8 +12,19 @@ SYNC_SKILL = "dwg-skp-sync"
 DEPENDENCY_SCHEMA = "dwg-skp-sync-core-dependency-v1"
 
 
+def _copy_text(source: Path, target: Path) -> None:
+    """Hash the same LF bytes that Git will store and export."""
+    target.write_bytes(source.read_bytes().replace(b"\r\n", b"\n"))
+
+
+def _write_json(path: Path, value: dict) -> None:
+    # write_text() translates LF to CRLF on Windows, invalidating a raw-byte
+    # manifest pin after Git applies the repository's eol=lf policy.
+    path.write_bytes((json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8"))
+
+
 def package_sync(destination: Path, core: Path) -> dict:
-    """Pin the sibling runtime; the sync action never carries an engine copy."""
+    """Pin the packaged sibling runtime; the sync action carries no engine copy."""
     destination, core = destination.resolve(), core.resolve()
     if not (destination / "SKILL.md").is_file():
         raise ValueError("Sync skill entrypoint is missing")
@@ -27,6 +37,7 @@ def package_sync(destination: Path, core: Path) -> dict:
         raise ValueError("Core runtime manifest is invalid")
     files = dict(manifest["files"])
     bridge = "scripts/sketchup/dwg_live_repair_bridge.rb"
+    _copy_text(core / bridge, core / bridge)
     files[bridge] = hashlib.sha256((core / bridge).read_bytes()).hexdigest()
     for relative, expected in files.items():
         path = (core / relative).resolve()
@@ -41,7 +52,7 @@ def package_sync(destination: Path, core: Path) -> dict:
     }
     target = destination / "scripts/core-dependency.json"
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(json.dumps(dependency, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _write_json(target, dependency)
     return {"destination": str(destination), "shared_core": str(core), "pinned_files": len(files)}
 
 
@@ -51,8 +62,8 @@ def package(destination: Path) -> dict:
     # Keep normal pip installs and the skill bundle on the same canonical rules.
     canonical_rules = ROOT / "src/dwg_semantic/config/default_rules.json"
     canonical_rules.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(ROOT / "config/default_rules.json", canonical_rules)
-    for source in (ROOT / "src/dwg_semantic").rglob("*"):
+    _copy_text(ROOT / "config/default_rules.json", canonical_rules)
+    for source in sorted((ROOT / "src/dwg_semantic").rglob("*")):
         if not source.is_file() or any(part in {"__pycache__", "bin", "obj"} for part in source.relative_to(ROOT / "src/dwg_semantic").parts):
             continue
         if source.suffix not in {".py", ".cs", ".csproj", ".json", ".ps1"}:
@@ -62,16 +73,16 @@ def package(destination: Path) -> dict:
             continue
         target = runtime / source.relative_to(ROOT / "src/dwg_semantic")
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
+        _copy_text(source, target)
     # Per-project recipes belong to project archives, not the normal skill.
     # Existing retired files are explicitly backed up/removed by installation,
     # never by a broad directory deletion here.
     files = {}
-    for source in runtime.rglob("*"):
+    for source in sorted(runtime.rglob("*")):
         if source.is_file() and "__pycache__" not in source.parts:
             files[source.relative_to(destination).as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
     manifest = {"schema": "dwg-layered-skp-package-v2", "files": files}
-    (destination / "scripts/runtime-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _write_json(destination / "scripts/runtime-manifest.json", manifest)
     report = {"destination": str(destination), "runtime_files": len(files)}
     sync = destination.parent / SYNC_SKILL
     if (sync / "SKILL.md").is_file():

@@ -50,10 +50,12 @@ Python 幾何／契約測試可先獨立執行。原生測試可能另外需要 
 .\.venv\Scripts\python.exe tools/package_skill.py
 .\.venv\Scripts\python.exe skills/dwg-layered-skp/scripts/dwg_to_skp.py doctor
 .\.venv\Scripts\python.exe skills/dwg-skp-sync/scripts/dwg_skp_sync.py doctor
-.\.venv\Scripts\python.exe -m pytest tests/test_sync_packaging.py tests/test_sync_launcher.py -q
+.\.venv\Scripts\python.exe -m pytest tests/test_package_git_archive.py tests/test_sync_packaging.py tests/test_sync_launcher.py -q
 ```
 
 打包會更新共用 runtime、manifest 與同步技能的相依雜湊。同步技能不攜帶第二份 runtime。檢查 diff，確保只包含預期原始碼與發布副本；不要手改雜湊以略過檢查。
+
+被雜湊的文字檔、Ruby 橋接器及產生的 JSON 一律以 UTF-8／LF 位元組輸出，再計算雜湊。`test_package_git_archive.py` 會由 CRLF 來源建立真實 Git commit 與 source ZIP，在解壓後驗證成對安裝，並確認改動檔案仍會遭到拒絕；執行環境需有 Git。發布前還須對實際候選 source ZIP 與技能 ZIP 解壓、成對安裝並從其他工作目錄執行 `--help`／`doctor`，不能只測打包前的工作目錄。
 
 ## 安裝技能
 

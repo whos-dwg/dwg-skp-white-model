@@ -4,7 +4,7 @@
 
 Reviewable DWG/DXF to source-layered SketchUp models, with CAD-driven updates to an existing white model.
 
-![Python 3.11+、套件 0.2.0、原生流程 Windows](docs/assets/badges.svg)
+![Python 3.11+、套件 0.2.1、原生流程 Windows](docs/assets/badges.svg)
 
 [快速開始](#quickstart) · [建模流程](#modeling) · [同步流程](#sync) · [架構](docs/ARCHITECTURE.md) · [貢獻指南](CONTRIBUTING.md) · [發布資料](docs/PUBLISHING.md)
 
@@ -12,7 +12,7 @@ Reviewable DWG/DXF to source-layered SketchUp models, with CAD-driven updates to
 
 建築來圖的圖層、圖塊與標註方式各不相同。這個專案把來源解析、構件判讀、人工核定與原生檔驗證分成明確步驟，讓牆、柱、帷幕、開口與 RC 樓板都有可查的來源與決策。構件可獨立編輯，Tag 保留原 CAD 圖層，構件分類另存於群組與屬性。
 
-目前套件版本為 `0.2.0`，以 **v0.2.0 Pre-release** 提供先行驗證；原生流程以 Windows、本機 AutoCAD 與 SketchUp 為主。
+目前套件版本為 `0.2.1`，以 **v0.2.1 Pre-release** 提供先行驗證；原生流程以 Windows、本機 AutoCAD 與 SketchUp 為主。
 
 ## 目錄
 
@@ -42,6 +42,8 @@ Reviewable DWG/DXF to source-layered SketchUp models, with CAD-driven updates to
 判讀結合圖層、幾何、圖塊與空間關係。巢狀圖塊的葉件保留各自來源；用途衝突、缺少尺寸或無法證明的構造列入待確認項目。
 
 初次建模使用 [dwg-layered-skp](skills/dwg-layered-skp/SKILL.md)。既有來源白模的局部或整模同步使用 [dwg-skp-sync](skills/dwg-skp-sync/SKILL.md)，兩者共用同一份 Python 核心。
+
+從 v0.2.0 升級時，請使用 v0.2.1 的成對技能包，先更新核心，再更新同步技能；此版修正 GitHub 下載後同步入口的清單雜湊失配。
 
 需要成對技能包時，可前往[下載與安裝說明](downloads/README.md)，並以附帶的 SHA-256 校驗檔核對下載結果。
 
@@ -234,7 +236,7 @@ $env:PYTHONPATH = (Resolve-Path src).Path
 .\.venv\Scripts\python.exe -m pytest tests -q
 ```
 
-部分測試需要 Ruby、SketchUp C API 或指定原生環境；請一併檢查 skipped／失敗原因。只跑 `unittest discover` 不會涵蓋所有 pytest 案例。完整測試、打包與安裝順序見[貢獻指南](CONTRIBUTING.md)，本次結果見 [v0.2.0 驗證紀錄](docs/VALIDATION.md)。
+部分測試需要 Ruby、SketchUp C API 或指定原生環境；請一併檢查 skipped／失敗原因。只跑 `unittest discover` 不會涵蓋所有 pytest 案例。完整測試、打包與安裝順序見[貢獻指南](CONTRIBUTING.md)，本次結果見 [v0.2.1 驗證紀錄](docs/VALIDATION.md)。
 
 完成上述合成範例的 `inspect` 後，可用其正規化文件單獨執行分類稽核：
 
